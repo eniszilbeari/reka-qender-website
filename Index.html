@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reka Qendër</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+    :root {
+        --color-primary: #8B4513;
+        --color-secondary: #D2691E;
+        --color-accent: #F5DEB3;
+        --color-dark: #2C1810;
+        --color-light: #FFF8DC;
+        --color-text: #2C1810;
+        --color-border: #D2A679;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: var(--color-light);
+        color: var(--color-text);
+        line-height: 1.6;
+    }
+
+    /* LOGO STYLE */
+    .logo img {
+        height: 55px;
+    }
+
+    header {
+        background: var(--color-primary);
+        color: white;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav {
+        display: flex;
+        gap: 2rem;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--color-primary);
+            flex-direction: column;
+            display: none !important;
+        }
+
+        nav.active {
+            display: flex !important;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+    }
+
+    /* HERO SECTION */
+    .hero {
+        background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    .hero-logo {
+        width: 160px;
+        margin-bottom: 20px;
+        filter: brightness(95%);
+    }
+
+    .cta-button {
+        background: var(--color-accent);
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        color: var(--color-text);
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.3rem;
+        color: var(--color-primary);
+    }
+
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .menu-item {
+        background: white;
+        padding: 1.3rem;
+        border-left: 4px solid var(--color-secondary);
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .menu-item h3 {
+        color: var(--color-primary);
+    }
+
+    .price {
+        color: var(--color-secondary);
+        font-weight: bold;
+    }
+
+    #about {
+        background: var(--color-accent);
+    }
+
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .about-content {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .info-boxes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .info-box {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 10px;
+    }
+
+    footer {
+        background: var(--color-dark);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .qr-container {
+        background: white;
+        padding: 2rem;
+        max-width: 350px;
+        margin: auto;
+        border-radius: 10px;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER ME LOGO -->
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="Images/Logo.jpg" alt="Reka Qendër">
+        </div>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+        <nav id="mobile-nav">
+            <a href="#menu" onclick="toggleMenu()">Meny</a>
+            <a href="#qr-menu" onclick="toggleMenu()">Meny QR</a>
+            <a href="#about" onclick="toggleMenu()">Rreth nesh</a>
+            <a href="#contact" onclick="toggleMenu()">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO ME LOGO NË QENDËR -->
+<section class="hero">
+    <img src="Images/Logo.jpg" class="hero-logo" alt="Reka Qendër">
+
+    <h1>Mirësevini në Reka Qendër</h1>
+    <p>Përvoja premium e kafesë në Çellopek</p>
+
+    <button class="cta-button" onclick="document.getElementById('qr-menu').scrollIntoView()">
+        Skanoni menynë
+    </button>
+</section>
+
+<!-- QR MENU -->
+<section id="qr-menu" style="background:#f9f5f0;">
+    <div class="container">
+        <h2>Meny Digjitale</h2>
+        <div class="qr-container">
+            <h3>Skanoni për të parë menynë</h3>
+            <div id="qrcode" style="margin:1rem auto;"></div>
+            <button class="cta-button" onclick="downloadQR()">Shkarko QR</button>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+    <div class="container">
+        <h2>Menyja jonë</h2>
+
+        <h3 style="text-align:center;margin-top:2rem;">Pije joalkoolike</h3>
+        <div class="menu-grid">
+            <div class="menu-item"><h3>Golden Eagle</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Limonadë</h3><div class="price">30 den</div></div>
+            <div class="menu-item"><h3>Borovnicë</h3><div class="price">30 den</div></div>
+            <div class="menu-item"><h3>Shpricer</h3><div class="price">30 den</div></div>
+            <div class="menu-item"><h3>Dredhëz</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Qershi</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Schweppes</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Coca Cola</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Fanta</h3><div class="price">60 den</div></div>
+            <div class="menu-item"><h3>Ujë natyral</h3><div class="price">30 den</div></div>
+        </div>
+
+        <h3 style="text-align:center;margin-top:3rem;">Pije të nxehta</h3>
+        <div class="menu-grid">
+            <div class="menu-item"><h3>Çaj</h3><div class="price">30 den</div></div>
+            <div class="menu-item"><h3>Espresso</h3><div class="price">30 den</div></div>
+            <div class="menu-item"><h3>Nescafe</h3><div class="price">30 den</div></div>
+        </div>
+    </div>
+</section>
+
+<<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <h2>Rreth nesh</h2>
+        <div class="about-content">
+            <div>
+                <h3>Historia jonë</h3>
+                <p>Reka Qendër është një kafiteri premium në Çelopek, e përkushtuar për të ofruar
+                   përvojë të jashtëzakonshme të kafesë. Ne i zgjedhim pijet tona me kujdes nga
+                   furnizues të cilësisë së lartë.</p>
+                <p>Baristat tanë janë të përkushtuar që çdo pije të jetë perfekte. Qoftë mëngjes apo
+                   pasdite, Reka Qendër është vendi i duhur për relaks dhe shije.</p>
+            </div>
+
+            <!-- Logo e futur këtu -->
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/85cb8bde-146c-4d5f-912f-8841cb7cc06d"
+                 alt="Logo Reka Qender"
+                 style="width:100%;border-radius:10px;">
+        </div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+    <div class="container">
+        <h2>Lokacioni</h2>
+        <div class="info-boxes">
+            <div class="info-box">
+                <h3>📍 Ku ndodhemi</h3>
+                <p>Çelopek</p>
+                <p>Maqedonia e Veriut</p>
+            </div>
+            <div class="info-box">
+                <h3>☕ Shërbimet</h3>
+                <p>✓ Ambient i brendshëm</p>
+                <p>✓ Marrje me vete</p>
+                <p>✓ WiFi falas</p>
+                <p>✓ Ëmbëlsira dhe pije</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <h2>Na kontaktoni</h2>
+
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label>Emri</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tema</label>
+                <input type="text" id="subject" required>
+            </div>
+
+            <div class="form-group">
+                <label>Mesazhi</label>
+                <textarea id="message" required></textarea>
+            </div>
+
+            <button class="cta-button" style="width:100%;">Dërgo</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Reka Qendër. Të gjitha të drejtat e rezervuara.</p>
+</footer>
+
+<script>
+    // QR CODE → always send user back to homepage
+    const url = window.location.href.split('#')[0];
+
+    const qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: url,
+        width: 256,
+        height: 256,
+        colorDark: "#8B4513",
+        colorLight: "#FFF8DC",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    function downloadQR() {
+        const canvas = document.querySelector("#qrcode canvas");
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "Reka_Qender_QR.png";
+        link.click();
+    }
+
+    function toggleMenu() {
+        document.getElementById("mobile-nav").classList.toggle("active");
+    }
+
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        alert("Mesazhi u dërgua me sukses!");
+    }
+</script>
+
+</body>
+</html>
